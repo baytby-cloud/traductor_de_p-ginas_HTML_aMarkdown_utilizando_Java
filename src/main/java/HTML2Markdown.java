@@ -42,7 +42,15 @@ public class HTML2Markdown {
             String html = cliente.descargarHTML(url);
             System.out.println("Respuesta HTTP: " + cliente.getCodigoRespuesta());
             System.out.println("HTML descargado: " + html.length() + " caracteres");
-            System.out.println("Destino: " + destino);
+
+            String contenido = html;
+
+            MarkdownWriter escritor = new MarkdownWriter();
+            escritor.guardar(destino, contenido);
+
+            System.out.println("Archivo generado: " + destino);
+            System.out.println("Tamaño: " + escritor.tamano(destino) + " bytes");
+            System.out.println("Conversión finalizada.");
 
 
         } catch (IOException e) {
